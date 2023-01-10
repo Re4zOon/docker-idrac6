@@ -7,9 +7,6 @@ ENV APP_NAME="iDRAC 6"  \
 
 COPY keycode-hack.c /keycode-hack.c
 
-RUN APP_ICON_URL=https://raw.githubusercontent.com/DomiStyle/docker-idrac6/master/icon.png && \
-    install_app_icon.sh "$APP_ICON_URL"
-
 COPY jdk7.tar.gz /tmp
 
 RUN cd /tmp && \
