@@ -36,6 +36,8 @@ RUN apt-get update && \
     gcc -o /keycode-hack.so /keycode-hack.c -shared -s -ldl -fPIC && \
     apt-get remove -y gcc software-properties-common
 
+RUN apt-ger autoremove -y
+
 RUN apt-get install -y libxext6:armhf libxrender1:armhf
 
 RUN apt-get autoremove -y && \
