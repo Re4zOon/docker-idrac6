@@ -5,6 +5,13 @@ ENV APP_NAME="iDRAC 6"  \
     DISPLAY_WIDTH=801   \
     DISPLAY_HEIGHT=621
 
+RUN apt update && \
+    apt-get install -y locales && \
+    sed-patch 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+
+ENV LANG=en_US.UTF-8
+
 RUN APP_ICON_URL=https://raw.githubusercontent.com/DomiStyle/docker-idrac6/master/icon.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
