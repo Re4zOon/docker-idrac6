@@ -5,7 +5,7 @@ ENV APP_NAME="iDRAC 6"  \
     DISPLAY_WIDTH=801   \
     DISPLAY_HEIGHT=621
 
-RUN apt update && \
+RUN apt-get update && \
     apt-get install -y locales && \
     sed-patch 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
