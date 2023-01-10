@@ -38,7 +38,7 @@ RUN apt-get update && \
 
 RUN apt-ger autoremove -y
 
-RUN apt-get install -y libxext6:armhf libxrender1:armhf
+RUN apt-get install -y libxext6:armhf libxrender1:armhf libxtst6:armhf
 
 RUN apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
