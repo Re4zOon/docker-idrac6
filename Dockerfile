@@ -22,7 +22,7 @@ COPY jdk7.tar.gz /tmp
 RUN cd /tmp && \
     tar -xzf jdk7.tar.gz && \
     mkdir /opt/java -p && \
-    /tmp/jdk1.7.0_60/* /opt/java && \
+    mv /tmp/jdk1.7.0_60/* /opt/java && \
     echo PATH="/opt/java/bin:$PATH" | tee -a $HOME/.bashrc
     
 RUN dpkg --add-architecture armhf && \
