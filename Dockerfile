@@ -12,7 +12,7 @@ RUN apt-get update && \
 
 ENV LANG=en_US.UTF-8
 
-RUN APP_ICON_URL=https://raw.githubusercontent.com/DomiStyle/docker-idrac6/master/icon.png && \
+RUN APP_ICON_URL=https://raw.githubusercontent.com/Re4zOon/docker-idrac6/03146e132df761552a76786c6412b5c9d15a99c7/icon.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
 COPY keycode-hack.c /keycode-hack.c
