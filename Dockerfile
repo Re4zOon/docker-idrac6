@@ -32,7 +32,7 @@ RUN echo $PATH && \
     java -version
 
 RUN apt-get update && \
-    apt-get install -y wget software-properties-common libx11-dev gcc xdotool && \
+    apt-get install -y wget software-properties-common libx11-dev libxext6:armhf gcc xdotool && \
     gcc -o /keycode-hack.so /keycode-hack.c -shared -s -ldl -fPIC && \
     apt-get remove -y gcc software-properties-common && \
     apt-get autoremove -y && \
