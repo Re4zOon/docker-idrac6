@@ -22,10 +22,10 @@ COPY jdk7.tar.gz /tmp
 RUN cd /tmp && \
     tar -xzf jdk7.tar.gz && \
     mkdir /opt/java -p && \
-    mv /tmp/jdk1.7.0_60/* /opt/java && \
-    sed -i 's/\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin/\/opt\/java\/bin:\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin/g' /etc/profile && \
-    sed -i 's/\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/local\/games:\/usr\/games/\opt\/java\/bin:\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/local\/games:\/usr\/games/g' /etc/profile
+    mv /tmp/jdk1.7.0_60/* /opt/java
     
+ENV PATH="${PATH}:/opt/java/bin"
+
 RUN echo $PATH && \
     dpkg --add-architecture armhf && \
     apt-get update && apt-get install libc6:armhf -y && \
