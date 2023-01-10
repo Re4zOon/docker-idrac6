@@ -10,10 +10,20 @@ COPY keycode-hack.c /keycode-hack.c
 RUN APP_ICON_URL=https://raw.githubusercontent.com/DomiStyle/docker-idrac6/master/icon.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
+COPY jdk7.tar.gz /tmp
+
+RUN cd /tmp && \
+    tar -xzf jdk7.tar.gz && \
+    mkdir /opt/java -p && \
+    /tmp/jdk1.7.0_60/* /opt/java && \
+    echo PATH="/opt/java/bin:$PATH" | tee -a $HOME/.bashrc
+    
+RUN dpkg --add-architecture armhf && \
+    apt-get update && apt-get install libc6:armhf -y && \
+    java -version
+
 RUN apt-get update && \
     apt-get install -y wget software-properties-common libx11-dev gcc xdotool && \
-    wget -nc https://cdn.azul.com/zulu/bin/zulu7.52.0.11-ca-jdk7.0.332-linux_amd64.deb && \
-    apt-get install -y ./zulu7.52.0.11-ca-jdk7.0.332-linux_amd64.deb && \
     gcc -o /keycode-hack.so /keycode-hack.c -shared -s -ldl -fPIC && \
     apt-get remove -y gcc software-properties-common && \
     apt-get autoremove -y && \
