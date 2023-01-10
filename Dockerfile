@@ -23,9 +23,8 @@ RUN cd /tmp && \
     tar -xzf jdk7.tar.gz && \
     mkdir /opt/java -p && \
     mv /tmp/jdk1.7.0_60/* /opt/java && \
-    sed-patch 'PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"/PATH="/opt/java/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"' /etc/profile && \
-    sed-patch 'PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"/PATH="/opt/java/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"' /etc/profile && \
-    cat /etc/profile
+    sed -i 's/\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin/\/opt\/java\/bin:\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin/g' /etc/profile && \
+    sed -i 's/\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/local\/games:\/usr\/games/\opt\/java\/bin:\/usr\/local\/bin:\/usr\/bin:\/bin:\/usr\/local\/games:\/usr\/games/g' /etc/profile
     
 RUN echo $PATH && \
     dpkg --add-architecture armhf && \
