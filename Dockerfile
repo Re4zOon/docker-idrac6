@@ -28,19 +28,14 @@ ENV PATH="${PATH}:/opt/java/bin"
 
 RUN echo $PATH && \
     dpkg --add-architecture armhf && \
-    apt-get update && apt-get install libc6:armhf -y && \
+    apt-get update && apt-get install libc6:armhf libxext6:armhf libxrender1:armhf libxtst6:armhf -y && \
     java -version
 
 RUN apt-get update && \
     apt-get install -y wget software-properties-common libx11-dev gcc xdotool && \
     gcc -o /keycode-hack.so /keycode-hack.c -shared -s -ldl -fPIC && \
-    apt-get remove -y gcc software-properties-common
-
-RUN apt-get autoremove -y
-
-RUN apt-get install -y libxext6:armhf libxrender1:armhf libxtst6:armhf
-
-RUN apt-get autoremove -y && \
+    apt-get remove -y gcc software-properties-common && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     rm /keycode-hack.c
 
